@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Random Number">
+    <meta property="og:description" content="자신있으면 맞춰봐!">
+    <meta property="og:image" content="Image/15457.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+    <title>숫자 맞추기</title>
+</head>
+<body>
+
+    <div id="container">
+        <div id="secondContainer">
+            <h1>숫자맞추기!</h1>
+            <input id ="userdata" type="number" placeholder="본인의 번호">
+            <button id="dataButton">정보!</button>
+            <p></p>
+
+            <p id="result">도전</p>
+            <div id="chance">남은기회 : 10</div>
+            <div class="inputArea">
+                <input id="inputNumber" type="number" placeholder="1부터 1000까지 숫자를 입력하세요.">
+                <button id="startButton">입력!</button>
+                <button id="resetButton">RESET!</button>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+       
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.4.0/firebase-app.js";
+
+        const firebaseConfig = {
+          apiKey: "AIzaSyCS4_6cpdLiTKykQzYu8uTyiHcWamfV0sg",
+          authDomain: "startest00-28cfd.firebaseapp.com",
+          databaseURL: "https://startest00-28cfd-default-rtdb.firebaseio.com",
+          projectId: "startest00-28cfd",
+          storageBucket: "startest00-28cfd.appspot.com",
+          messagingSenderId: "1001085701165",
+          appId: "1:1001085701165:web:ed08f47dfd769396e87ca4"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import{getDatabase, ref, set, child, update, remove}
+        from "https://www.gstatic.com/firebasejs/10.4.0/firebase-database.js"
+        const db =getDatabase()
+        ;
+        var namebox = document.getElementById("userdata");
+        var inbtn = document.getElementById("dataButton");
+
+        function InserData(){
+            set(ref(db, "User/"),{
+            Nameuser:namebox.value
+            }).then(()=>{alter("sucess");}).catch((error)=>{
+                alert("unsucess");
+            });
+        }
+        dataButton.addEventListener('click',InserData);
+      </script>
+
+
+    <scipt src="main.js"></script>
+</body>
+</html>
